@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "pydantic-vcon"
+version = "0.0.2"
+description = "A Pydantic-based implementation of the vCon (Virtual Conversation Container) format"
+authors = ["Thomas Howe <ghostofbasho@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/howethomas/pydantic-vcon"
+homepage = "https://github.com/howethomas/pydantic-vcon"
+packages = [{include = "pydantic_vcon"}]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+pydantic = ">=2.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+pytest-cov = "^4.0.0"
+black = "^23.0.0"
+isort = "^5.0.0"
+mypy = "^1.0.0"
+ruff = "^0.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+select = ["E", "F", "B", "I"]
+ignore = [] 
