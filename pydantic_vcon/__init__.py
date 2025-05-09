@@ -3,20 +3,20 @@ pydantic-vcon - A Pydantic-based implementation of the vCon format
 """
 
 from .models import (
-    VCon,
-    VConVersion,
-    Party,
+    Analysis,
+    Appended,
+    Attachment,
+    CivicAddress,
     Dialog,
     DialogType,
-    Analysis,
-    Attachment,
-    GroupItem,
-    Redacted,
-    Appended,
-    Encoding,
     Disposition,
-    CivicAddress,
-    PartyHistory
+    Encoding,
+    GroupItem,
+    Party,
+    PartyHistory,
+    Redacted,
+    VCon,
+    VConVersion,
 )
 
 __version__ = "0.0.2"
@@ -34,5 +34,5 @@ __all__ = [
     "Encoding",
     "Disposition",
     "CivicAddress",
-    "PartyHistory"
-] 
+    "PartyHistory",
+]

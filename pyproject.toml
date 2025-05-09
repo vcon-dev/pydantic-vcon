@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pydantic-vcon"
-version = "0.0.2"
+version = "0.0.3"
 description = "A Pydantic-based implementation of the vCon (Virtual Conversation Container) format"
 authors = ["Thomas Howe <ghostofbasho@gmail.com>"]
 readme = "README.md"
