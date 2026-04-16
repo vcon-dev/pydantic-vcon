@@ -1,0 +1,210 @@
+{
+  "schema_version": "1.0.0",
+  "repo": "pydantic-vcon",
+  "repo_version": "0.0.3",
+  "archetype": "python-library",
+  "generated_at": "2026-04-16T15:15:45.205294+00:00",
+  "stats": {
+    "node_count": 15,
+    "edge_count": 18
+  },
+  "nodes": [
+    {
+      "id": "class:VConVersion",
+      "type": "class",
+      "name": "VConVersion",
+      "file": "pydantic_vcon/models.py",
+      "line": 13
+    },
+    {
+      "id": "class:Encoding",
+      "type": "class",
+      "name": "Encoding",
+      "file": "pydantic_vcon/models.py",
+      "line": 19
+    },
+    {
+      "id": "class:CivicAddress",
+      "type": "class",
+      "name": "CivicAddress",
+      "file": "pydantic_vcon/models.py",
+      "line": 27
+    },
+    {
+      "id": "class:PartyHistory",
+      "type": "class",
+      "name": "PartyHistory",
+      "file": "pydantic_vcon/models.py",
+      "line": 53
+    },
+    {
+      "id": "class:Party",
+      "type": "class",
+      "name": "Party",
+      "file": "pydantic_vcon/models.py",
+      "line": 68
+    },
+    {
+      "id": "class:DialogType",
+      "type": "class",
+      "name": "DialogType",
+      "file": "pydantic_vcon/models.py",
+      "line": 96
+    },
+    {
+      "id": "class:Disposition",
+      "type": "class",
+      "name": "Disposition",
+      "file": "pydantic_vcon/models.py",
+      "line": 105
+    },
+    {
+      "id": "class:Dialog",
+      "type": "class",
+      "name": "Dialog",
+      "file": "pydantic_vcon/models.py",
+      "line": 116
+    },
+    {
+      "id": "class:Analysis",
+      "type": "class",
+      "name": "Analysis",
+      "file": "pydantic_vcon/models.py",
+      "line": 208
+    },
+    {
+      "id": "class:Attachment",
+      "type": "class",
+      "name": "Attachment",
+      "file": "pydantic_vcon/models.py",
+      "line": 257
+    },
+    {
+      "id": "class:GroupItem",
+      "type": "class",
+      "name": "GroupItem",
+      "file": "pydantic_vcon/models.py",
+      "line": 299
+    },
+    {
+      "id": "class:Redacted",
+      "type": "class",
+      "name": "Redacted",
+      "file": "pydantic_vcon/models.py",
+      "line": 327
+    },
+    {
+      "id": "class:Appended",
+      "type": "class",
+      "name": "Appended",
+      "file": "pydantic_vcon/models.py",
+      "line": 342
+    },
+    {
+      "id": "class:VCon",
+      "type": "class",
+      "name": "VCon",
+      "file": "pydantic_vcon/models.py",
+      "line": 370
+    },
+    {
+      "id": "document:readme-md",
+      "type": "document",
+      "name": "README.md",
+      "file": "README.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "class:VConVersion",
+      "to": "class:str",
+      "type": "inherits"
+    },
+    {
+      "from": "class:VConVersion",
+      "to": "class:Enum",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Encoding",
+      "to": "class:str",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Encoding",
+      "to": "class:Enum",
+      "type": "inherits"
+    },
+    {
+      "from": "class:CivicAddress",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    },
+    {
+      "from": "class:PartyHistory",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Party",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    },
+    {
+      "from": "class:DialogType",
+      "to": "class:str",
+      "type": "inherits"
+    },
+    {
+      "from": "class:DialogType",
+      "to": "class:Enum",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Disposition",
+      "to": "class:str",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Disposition",
+      "to": "class:Enum",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Dialog",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Analysis",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Attachment",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    },
+    {
+      "from": "class:GroupItem",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Redacted",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    },
+    {
+      "from": "class:Appended",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    },
+    {
+      "from": "class:VCon",
+      "to": "class:BaseModel",
+      "type": "inherits"
+    }
+  ],
+  "subsystems": []
+}
