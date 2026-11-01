@@ -1,38 +1,68 @@
 """
-pydantic-vcon - A Pydantic-based implementation of the vCon format
+pydantic-vcon - Pydantic models for the vCon format (core-05, syntax "0.5.0")
 """
 
+from .migration import (
+    MIGRATION_STEPS,
+    MigrationError,
+    MigrationReport,
+    MigrationResult,
+    migrate_0_4_0_to_0_5_0,
+)
 from .models import (
     Analysis,
     Appended,
+    AmendedFrom,
     Attachment,
     CivicAddress,
     Dialog,
     DialogType,
     Disposition,
     Encoding,
+    Event,
     GroupItem,
     Party,
-    PartyHistory,
     Redacted,
+    RedactedFrom,
+    RedactedSegments,
+    RedactedString,
+    Session,
+    SessionId,
+    SessionReference,
+    SessionReferenceType,
     VCon,
     VConVersion,
+    extensions_in_use,
 )
 
-__version__ = "0.0.2"
+__version__ = "0.1.0"
 __all__ = [
     "VCon",
     "VConVersion",
     "Party",
+    "CivicAddress",
+    "Session",
+    "SessionId",
+    "SessionReference",
+    "SessionReferenceType",
+    "Event",
     "Dialog",
     "DialogType",
     "Analysis",
     "Attachment",
     "GroupItem",
+    "RedactedFrom",
+    "AmendedFrom",
+    "RedactedString",
+    "RedactedSegments",
     "Redacted",
     "Appended",
     "Encoding",
     "Disposition",
-    "CivicAddress",
-    "PartyHistory",
+    "extensions_in_use",
+    "migrate_0_4_0_to_0_5_0",
+    "MigrationError",
+    "MigrationReport",
+    "MigrationResult",
+    "MIGRATION_STEPS",
 ]
