@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pydantic-vcon"
-version = "0.0.3"
+version = "0.1.0"
 description = "A Pydantic-based implementation of the vCon (Virtual Conversation Container) format"
 authors = ["Thomas Howe <ghostofbasho@gmail.com>"]
 readme = "README.md"
@@ -16,6 +16,7 @@ pydantic = ">=2.0.0"
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0.0"
 pytest-cov = "^4.0.0"
+jsonschema = "^4.0.0"
 black = "^23.0.0"
 isort = "^5.0.0"
 mypy = "^1.0.0"
@@ -24,6 +25,10 @@ ruff = "^0.1.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
 
 [tool.black]
 line-length = 88

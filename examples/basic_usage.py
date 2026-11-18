@@ -1,87 +1,81 @@
 """
-Basic usage example of pydantic-vcon
+Basic usage example of pydantic-vcon (vCon core-05, syntax 0.5.0)
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 from pydantic_vcon import (
     Analysis,
-    Attachment,
     CivicAddress,
     Dialog,
     DialogType,
     Encoding,
+    Event,
     Party,
     VCon,
 )
 
 
 def main():
-    # Create a new vCon
     vcon = VCon.build_new()
 
-    # Add a party with contact information
-    party = Party(
-        tel="+1234567890",
-        name="John Doe",
-        civicaddress=CivicAddress(country="US", a1="CA", a3="San Francisco"),
+    # Parties: the sender first, then the receiver
+    vcon.add_party(
+        Party(
+            tel="+1234567890",
+            name="John Doe",
+            civicaddress=CivicAddress(country="US", a1="CA", a3="San Francisco"),
+        )
     )
-    vcon.add_party(party)
+    vcon.add_party(Party(mailto="agent@example.com", name="Agent"))
 
-    # Add a text dialog
-    dialog = Dialog(
-        type=DialogType.TEXT,
-        start=datetime.now(),
-        parties=0,  # Reference to the first party
-        body="Hello, this is a test message",
-        encoding=Encoding.JSON,
+    now = datetime.now(timezone.utc).isoformat()
+
+    # A text dialog. parties lists the contributors only; the receivers are in the
+    # Session, which add_dialog creates (or reuses) and which lists this dialog.
+    vcon.add_dialog(
+        Dialog(
+            type=DialogType.TEXT,
+            start=now,
+            parties=0,
+            body="Hello, this is a test message",
+            encoding=Encoding.NONE,
+            mediatype="text/plain",
+        )
     )
-    vcon.add_dialog(dialog)
+    vcon.sessions[0].parties = [0, 1]
 
-    # Add sentiment analysis
-    analysis = Analysis(
-        type="sentiment",
-        vendor="example",
-        body={"score": 0.8, "label": "positive"},
-        encoding=Encoding.JSON,
+    # Events replace the old party_history
+    vcon.add_event(Event(type="join", time=now, sessions=0, party=0))
+
+    vcon.add_analysis(
+        Analysis(
+            type="sentiment",
+            vendor="example",
+            dialog=0,
+            body={"score": 0.8, "label": "positive"},
+            encoding=Encoding.JSON,
+        )
     )
-    vcon.add_analysis(analysis)
 
-    # Add a transcript attachment
-    attachment = Attachment(
-        type="transcript",
-        body="This is a transcript of the conversation",
-        encoding=Encoding.JSON,
-    )
-    vcon.add_attachment(attachment)
-
-    # Add some tags
+    # Tags are scoped to the only Session unless dialog= or session= is given
     vcon.add_tag("category", "support")
-    vcon.add_tag("priority", "high")
 
-    # Validate the vCon
+    # A lawful basis attachment is never added for you
+    print("Lawful basis present:", vcon.has_lawful_basis())
+
     is_valid, errors = vcon.is_valid()
     if not is_valid:
-        print("Validation errors:")
         for error in errors:
             print(f"- {error}")
         return
 
-    # Convert to JSON
     json_str = vcon.to_json()
-    print("\nSerialized vCon:")
     print(json_str)
 
-    # Load from JSON
-    loaded_vcon = VCon.build_from_json(json_str)
-    print("\nLoaded vCon:")
-    print(f"UUID: {loaded_vcon.uuid}")
-    print(f"Parties: {len(loaded_vcon.parties)}")
-    print(f"Dialogs: {len(loaded_vcon.dialog)}")
-    print(f"Analysis: {len(loaded_vcon.analysis)}")
-    print(f"Attachments: {len(loaded_vcon.attachments)}")
-    print(f"Category tag: {loaded_vcon.get_tag('category')}")
-    print(f"Priority tag: {loaded_vcon.get_tag('priority')}")
+    loaded = VCon.build_from_json(json_str)
+    print(f"Sessions: {len(loaded.sessions)}  Events: {len(loaded.events)}")
+    print(f"Category tag: {loaded.get_tag('category')}")
 
 
 if __name__ == "__main__":
